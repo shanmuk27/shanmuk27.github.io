@@ -498,7 +498,9 @@ async function updateTabCounts(cameras) {
     try {
       const res  = await fetch(`${API}?action=images&page=1&limit=1&camera=${encodeURIComponent(cam.camera_id)}${eventParam}`);
       const data = await res.json();
-      const badge = document.querySelector(`.cam-tab[data-cam="${cam.camera_id}"] .cam-count-badge`);
+      const tab = [...document.querySelectorAll('.cam-tab')]
+        .find(t => t.dataset.cam === cam.camera_id);
+      const badge = tab?.querySelector('.cam-count-badge');
       if (badge) badge.textContent = data.total ?? 0;
     } catch (e) {}
   }
@@ -552,12 +554,12 @@ async function poll() {
     const data = await res.json();
     if (!data.images || data.images.length === 0) return;
 
-    data.images.forEach(img => {
+    data.images.slice().reverse().forEach(img => {
       images.unshift(img);
       grid.insertBefore(makeCard(img, true), grid.firstChild);
     });
 
-    lastId = data.images[0].id;
+    lastId = Math.max(lastId, ...data.images.map(img => img.id));
     total  = data.total;
     updateUI();
   } catch (e) {}
@@ -795,6 +797,7 @@ sendViewerPing();
 // Add badge to All tab
 const allTab = document.getElementById('tab-all');
 allTab.innerHTML += '<span class="cam-count-badge">…</span>';
+allTab.addEventListener('click', () => switchCamera('', allTab));
 
 setInterval(poll, 10000);          // poll new images every 10s
 setInterval(sendViewerPing, 30000); // ping viewer presence every 30s

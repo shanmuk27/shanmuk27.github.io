@@ -811,6 +811,7 @@ async function loadCameraFilter() {
     const res  = await fetch(`${API}?action=get_cameras`);
     const data = await res.json();
     const sel  = document.getElementById('cam-filter');
+    sel.querySelectorAll('option:not(:first-child)').forEach(opt => opt.remove());
     (data.cameras || []).forEach(cam => {
       const opt = document.createElement('option');
       opt.value = cam.camera_id;
@@ -904,19 +905,36 @@ async function loadEvents() {
     row.innerHTML = `
       <span class="ev-icon">${isActive ? '🟢' : '📸'}</span>
       <div class="ev-info">
-        <div class="ev-name">${esc(ev.event_name)}${isActive ? ' <span style="font-size:.7rem;color:#4ade80;font-weight:600">● LIVE</span>' : ''}</div>
-        <div class="ev-meta">📷 ${esc(ev.studio_name)} &nbsp;·&nbsp; 🗓️ ${new Date(ev.created_at).toLocaleDateString('en-IN')} &nbsp;·&nbsp; <code style="font-size:.7rem">${esc(ev.slug)}</code></div>
+        <div class="ev-name"></div>
+        <div class="ev-meta"></div>
       </div>
-      <span class="ev-badge">${ev.photo_count} photos</span>
+      <span class="ev-badge"></span>
       ${isActive
         ? `<button class="ev-btn is-active">✅ Active</button>`
-        : `<button class="ev-btn set-active" onclick="setActiveEvent('${esc(ev.slug)}')">▶ Set Active</button>`
+        : `<button class="ev-btn set-active" type="button" data-action="set-active">▶ Set Active</button>`
       }
-      <button class="ev-btn" onclick="viewEventGallery('${esc(ev.slug)}')">🔗 Open</button>
-      <button class="ev-btn" onclick="loadQrForEvent('${esc(ev.event_name)}','${esc(ev.studio_name)}','${esc(ev.event_url)}')">📱 QR</button>
-      <button class="ev-btn del-imgs" title="Delete all photos for this event (keeps the event)" onclick="deleteEventImages('${esc(ev.slug)}','${esc(ev.event_name)}',${ev.photo_count})">🗑️ Del Photos</button>
-      <button class="ev-btn danger" onclick="deleteEvent(${ev.id},this)" title="Delete event record only">✕ Event</button>
+      <button class="ev-btn" type="button" data-action="open">🔗 Open</button>
+      <button class="ev-btn" type="button" data-action="qr">📱 QR</button>
+      <button class="ev-btn del-imgs" type="button" data-action="delete-images" title="Delete all photos for this event (keeps the event)">🗑️ Del Photos</button>
+      <button class="ev-btn danger" type="button" data-action="delete-event" title="Delete event record only">✕ Event</button>
     `;
+    const nameEl = row.querySelector('.ev-name');
+    nameEl.textContent = ev.event_name;
+    if (isActive) {
+      const live = document.createElement('span');
+      live.style.cssText = 'font-size:.7rem;color:#4ade80;font-weight:600';
+      live.textContent = ' ● LIVE';
+      nameEl.appendChild(live);
+    }
+
+    const eventDate = ev.created_at ? new Date(ev.created_at).toLocaleDateString('en-IN') : '';
+    row.querySelector('.ev-meta').textContent = `📷 ${ev.studio_name}  ·  🗓️ ${eventDate}  ·  ${ev.slug}`;
+    row.querySelector('.ev-badge').textContent = `${ev.photo_count} photos`;
+    row.querySelector('[data-action="set-active"]')?.addEventListener('click', () => setActiveEvent(ev.slug));
+    row.querySelector('[data-action="open"]').addEventListener('click', () => viewEventGallery(ev.slug));
+    row.querySelector('[data-action="qr"]').addEventListener('click', () => loadQrForEvent(ev.event_name, ev.studio_name, ev.event_url));
+    row.querySelector('[data-action="delete-images"]').addEventListener('click', () => deleteEventImages(ev.slug, ev.event_name, ev.photo_count));
+    row.querySelector('[data-action="delete-event"]').addEventListener('click', e => deleteEvent(ev.id, e.currentTarget));
     list.appendChild(row);
   });
 }
