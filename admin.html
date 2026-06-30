@@ -97,6 +97,17 @@
   .stat.convert-q .val { color: #0891b2; }
   .stat.process-q .val { color: #2563eb; }
   .stat.fail-q .val { color: var(--danger); }
+  .stat.held-q .val { color: var(--warn); }
+  .stat.agent-msg { flex: 1 1 280px; }
+  .stat.agent-msg .val {
+    color: var(--dim);
+    font-size: .82rem;
+    font-weight: 500;
+    max-width: 520px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
   /* ── Camera section ── */
   #camera-section {
@@ -620,6 +631,9 @@
     <div class="stat process-q"><div class="val" id="stat-in-progress">—</div><div class="lbl">⚙️ Processing</div></div>
     <div class="stat"><div class="val" id="stat-uploaded-total" style="color:var(--success)">—</div><div class="lbl">✅ Uploaded</div></div>
     <div class="stat fail-q"><div class="val" id="stat-failed-total">—</div><div class="lbl">⚠️ Failed</div></div>
+    <div class="stat held-q"><div class="val" id="stat-held-total">—</div><div class="lbl">⏸️ Held</div></div>
+    <div class="stat"><div class="val" id="stat-archived-total" style="color:var(--dim)">—</div><div class="lbl">📦 Archived</div></div>
+    <div class="stat agent-msg"><div class="val" id="stat-agent-message">—</div><div class="lbl">Agent message</div></div>
   </div>
 
   <!-- Camera Status Section -->
@@ -856,12 +870,18 @@ async function loadAgentQueue() {
     document.getElementById('stat-in-progress').textContent = data.in_progress ?? 0;
     document.getElementById('stat-uploaded-total').textContent = data.uploaded_total ?? 0;
     document.getElementById('stat-failed-total').textContent = data.failed_total ?? 0;
+    document.getElementById('stat-held-total').textContent = data.held_total ?? 0;
+    document.getElementById('stat-archived-total').textContent = data.archived_total ?? 0;
+    document.getElementById('stat-agent-message').textContent = data.last_message || '—';
   } catch(e) {
     document.getElementById('stat-upload-q').textContent  = '—';
     document.getElementById('stat-convert-q').textContent = '—';
     document.getElementById('stat-in-progress').textContent = '—';
     document.getElementById('stat-uploaded-total').textContent = '—';
     document.getElementById('stat-failed-total').textContent = '—';
+    document.getElementById('stat-held-total').textContent = '—';
+    document.getElementById('stat-archived-total').textContent = '—';
+    document.getElementById('stat-agent-message').textContent = '—';
   }
 }
 
