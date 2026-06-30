@@ -799,7 +799,7 @@ const allTab = document.getElementById('tab-all');
 allTab.innerHTML += '<span class="cam-count-badge">…</span>';
 allTab.addEventListener('click', () => switchCamera('', allTab));
 
-setInterval(poll, 10000);          // poll new images every 10s
+setInterval(poll, 5000);           // poll new images every 5s
 setInterval(sendViewerPing, 30000); // ping viewer presence every 30s
 </script>
 </body>

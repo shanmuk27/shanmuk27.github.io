@@ -95,6 +95,8 @@
   .stat.viewers .val  { color: #7c3aed; }
   .stat.upload-q .val { color: var(--warn); }
   .stat.convert-q .val { color: #0891b2; }
+  .stat.process-q .val { color: #2563eb; }
+  .stat.fail-q .val { color: var(--danger); }
 
   /* ── Camera section ── */
   #camera-section {
@@ -615,6 +617,9 @@
     <div class="stat viewers"><div class="val" id="stat-viewers">—</div><div class="lbl">👥 Live viewers</div></div>
     <div class="stat upload-q"><div class="val" id="stat-upload-q">—</div><div class="lbl">📤 Upload queue</div></div>
     <div class="stat convert-q"><div class="val" id="stat-convert-q">—</div><div class="lbl">🔄 Convert queue</div></div>
+    <div class="stat process-q"><div class="val" id="stat-in-progress">—</div><div class="lbl">⚙️ Processing</div></div>
+    <div class="stat"><div class="val" id="stat-uploaded-total" style="color:var(--success)">—</div><div class="lbl">✅ Uploaded</div></div>
+    <div class="stat fail-q"><div class="val" id="stat-failed-total">—</div><div class="lbl">⚠️ Failed</div></div>
   </div>
 
   <!-- Camera Status Section -->
@@ -809,8 +814,14 @@ function showApp() {
   loadViewerCount();
   loadAgentQueue();
   loadCameraFilter();
-  camPollTimer = setInterval(loadCameraStatus, 15000);
-  statsTimer   = setInterval(() => { loadStats(); loadViewerCount(); loadAgentQueue(); }, 15000);
+  camPollTimer = setInterval(loadCameraStatus, 5000);
+  statsTimer   = setInterval(() => {
+    loadStats();
+    loadViewerCount();
+    loadAgentQueue();
+    loadEvents();
+    loadCameraFilter();
+  }, 5000);
 }
 
 // ── Stats ─────────────────────────────────────────────────────────────────────
@@ -842,9 +853,15 @@ async function loadAgentQueue() {
     const data = await res.json();
     document.getElementById('stat-upload-q').textContent  = data.upload_queue  ?? 0;
     document.getElementById('stat-convert-q').textContent = data.convert_queue ?? 0;
+    document.getElementById('stat-in-progress').textContent = data.in_progress ?? 0;
+    document.getElementById('stat-uploaded-total').textContent = data.uploaded_total ?? 0;
+    document.getElementById('stat-failed-total').textContent = data.failed_total ?? 0;
   } catch(e) {
     document.getElementById('stat-upload-q').textContent  = '—';
     document.getElementById('stat-convert-q').textContent = '—';
+    document.getElementById('stat-in-progress').textContent = '—';
+    document.getElementById('stat-uploaded-total').textContent = '—';
+    document.getElementById('stat-failed-total').textContent = '—';
   }
 }
 
@@ -854,6 +871,7 @@ async function loadCameraFilter() {
     const res  = await fetch(`${API}?action=get_cameras`);
     const data = await res.json();
     const sel  = document.getElementById('cam-filter');
+    const selected = activeCamera || sel.value;
     sel.querySelectorAll('option:not(:first-child)').forEach(opt => opt.remove());
     (data.cameras || []).forEach(cam => {
       const opt = document.createElement('option');
@@ -861,6 +879,9 @@ async function loadCameraFilter() {
       opt.textContent = cam.camera_name || cam.camera_id;
       sel.appendChild(opt);
     });
+    if ([...sel.options].some(opt => opt.value === selected)) {
+      sel.value = selected;
+    }
   } catch(e) {}
 }
 
