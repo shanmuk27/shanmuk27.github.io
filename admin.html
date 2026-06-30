@@ -264,12 +264,55 @@
   .qr-camera-icon { font-size: 1.1rem; }
   .qr-studio-name { font-size: .88rem; font-weight: 700; color: #d4a94a; letter-spacing: .12em; text-transform: uppercase; }
   @media print {
+    @page { size: A4 portrait; margin: 0; }
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    html, body { width: 210mm; height: 297mm; margin: 0 !important; background: #fff !important; overflow: hidden !important; }
     body > * { display: none !important; }
-    #qr-modal { display: block !important; position: static !important; background: none !important; padding: 0 !important; }
-    .qr-modal-inner { box-shadow: none !important; padding: 0 !important; background: none !important; max-width: 420px; margin: 0 auto; }
+    #qr-modal {
+      display: flex !important;
+      position: fixed !important;
+      inset: 0 !important;
+      width: 210mm !important;
+      height: 297mm !important;
+      background: none !important;
+      padding: 0 !important;
+      align-items: stretch !important;
+      justify-content: stretch !important;
+    }
+    .qr-modal-inner {
+      width: 210mm !important;
+      height: 297mm !important;
+      max-width: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      background: none !important;
+      box-shadow: none !important;
+    }
     .qr-actions, .qr-modal-close { display: none !important; }
-    #qrPoster { break-inside: avoid; border-radius: 20px; background: linear-gradient(160deg,#0f0c29,#302b63,#24243e) !important; }
+    #qrPoster {
+      width: 210mm !important;
+      height: 297mm !important;
+      min-height: 297mm !important;
+      border-radius: 0 !important;
+      padding: 32mm 22mm 24mm !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      break-inside: avoid;
+      background: linear-gradient(160deg,#0f0c29,#302b63,#24243e) !important;
+    }
+    .qr-poster::before { top: -20mm !important; right: -18mm !important; width: 70mm !important; height: 70mm !important; }
+    .qr-poster::after { bottom: -18mm !important; left: -16mm !important; width: 58mm !important; height: 58mm !important; }
+    .qr-stars { font-size: 18pt !important; margin-bottom: 10mm !important; }
+    .qr-event-title { font-size: 30pt !important; max-width: 160mm !important; margin-bottom: 4mm !important; }
+    .qr-subtitle { font-size: 12pt !important; margin-bottom: 18mm !important; }
+    .qr-frame { border-radius: 8mm !important; padding: 5mm !important; box-shadow: 0 4mm 18mm rgba(0,0,0,.4) !important; }
+    .qr-frame img { width: 92mm !important; height: 92mm !important; border-radius: 3mm !important; }
+    .qr-tap-hint { font-size: 11pt !important; margin: 14mm 0 6mm !important; }
+    .qr-divider { width: 120mm !important; margin: 8mm 0 !important; }
+    .qr-camera-icon { font-size: 18pt !important; }
+    .qr-studio-name { font-size: 15pt !important; }
     .qr-event-title { color: #fff !important; }
     .qr-stars, .qr-studio-name { color: #d4a94a !important; }
     .qr-subtitle, .qr-tap-hint { color: rgba(255,255,255,.6) !important; }
