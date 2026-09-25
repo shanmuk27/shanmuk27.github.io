@@ -1672,7 +1672,7 @@ function renderFtpTable() {
   const dns   = net ? (net.dns4[0] || net.dns[0] || gw) : '';
   // The pasted adapter is authoritative: the agent's Internet route can be a
   // different network when both Wi-Fi and Ethernet are connected.
-  const ftpIp = net ? net.ip : liveLaptopIp;
+  const ftpIp = net ? net.ip : '';
 
   const netTag = !ftpIp              ? ['info', 'Not detected']
                : (net && net.gateway) ? ['ok', net.label]
