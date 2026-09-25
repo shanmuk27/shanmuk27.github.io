@@ -184,6 +184,7 @@
 
   /* ── Setup section ── */
   .header-link { color: var(--accent); text-decoration: none; font-size: .82rem; }
+  button.header-link { appearance: none; background: transparent; border: 0; cursor: pointer; padding: 0; }
   .header-link:hover { text-decoration: underline; }
   .setup-card {
     background: var(--surface); border: 1px solid var(--border);
@@ -710,7 +711,7 @@
   <header>
     <h1>&#128247; Supriya Digitals</h1>
     <div class="right">
-      <a class="header-link" href="#setup">⚙️ Setup</a>
+      <button class="header-link" type="button" onclick="toggleSetup()" aria-controls="setup">⚙️ Setup</button>
       <a href="https://shanmuk27.github.io/" target="_blank" style="color:var(--accent);text-decoration:none;font-size:.82rem">&#8599; View gallery</a>
       <button id="logout-btn" onclick="logout()">Logout</button>
     </div>
@@ -747,8 +748,8 @@
   <main>
 
     <!-- Setup: camera FTP + router IP -->
-    <div class="section" id="setup">
-      <div class="section-title">⚙️ Setup — Camera FTP &amp; Router IP</div>
+    <div class="section" id="setup" hidden>
+      <div class="section-title">⚙️ Setup — Camera FTP &amp; Router IP <button class="btn-mini" type="button" onclick="toggleSetup(false)">✕ Close</button></div>
 
       <div class="setup-card">
         <div class="setup-card-head">
@@ -1654,6 +1655,17 @@ function copyText(text) {
   navigator.clipboard.writeText(text)
     .then(() => toast('📋 Copied to clipboard'))
     .catch(() => toast('❌ Copy failed — select the text manually'));
+}
+
+function toggleSetup(forceOpen) {
+  const panel = document.getElementById('setup');
+  if (!panel) return;
+  const open = typeof forceOpen === 'boolean' ? forceOpen : panel.hidden;
+  panel.hidden = !open;
+  if (open) {
+    renderFtpTable();
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 // 1 · FTP settings table ──────────────────────────────────────────────────────
