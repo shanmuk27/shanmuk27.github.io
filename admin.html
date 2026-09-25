@@ -182,6 +182,103 @@
   }
   .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
+  /* ── Setup section ── */
+  .header-link { color: var(--accent); text-decoration: none; font-size: .82rem; }
+  .header-link:hover { text-decoration: underline; }
+  .setup-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px 22px; margin-bottom: 16px;
+  }
+  .setup-card-head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap; margin-bottom: 10px;
+    font-size: .92rem; font-weight: 600;
+  }
+  .setup-note { font-size: .8rem; color: var(--dim); line-height: 1.55; margin-bottom: 14px; }
+  .setup-note b { color: var(--text); }
+  .setup-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .setup-hint { font-size: .78rem; color: var(--dim); }
+  .btn-mini {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+    padding: 6px 12px; font-size: .78rem; cursor: pointer; color: var(--dim);
+    font-weight: 500; transition: border-color .2s, color .2s, opacity .2s; white-space: nowrap;
+  }
+  .btn-mini:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-mini.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn-mini.primary:hover { opacity: .9; color: #fff; }
+
+  .setup-table { width: 100%; border-collapse: collapse; font-size: .84rem; }
+  .setup-table th, .setup-table td {
+    text-align: left; padding: 8px 10px;
+    border-bottom: 1px solid var(--border); vertical-align: top;
+  }
+  .setup-table th {
+    font-size: .7rem; text-transform: uppercase; letter-spacing: .05em;
+    color: var(--dim); font-weight: 700; white-space: nowrap;
+  }
+  .setup-table tr:last-child td { border-bottom: none; }
+  .setup-table td.setting { color: var(--dim); font-weight: 400; }
+  .setup-table td.value {
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-weight: 600; white-space: nowrap;
+  }
+  .setup-table td.value.muted { color: var(--dim); font-weight: 400; font-style: italic; }
+  .setup-table td.mono { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
+  .setup-table td small { display: block; color: var(--dim); font-size: .72rem; font-weight: 400; }
+  .setup-scroll { overflow-x: auto; }
+
+  .tag {
+    display: inline-block; padding: 1px 7px; border-radius: 999px;
+    font-size: .67rem; font-weight: 700; letter-spacing: .03em;
+    text-transform: uppercase; vertical-align: middle;
+  }
+  .tag.ok   { background: #dcfce7; color: #15803d; }
+  .tag.warn { background: #fef3c7; color: #b45309; }
+  .tag.bad  { background: #fee2e2; color: #b91c1c; }
+  .tag.info { background: #dbeafe; color: #1d4ed8; }
+
+  .setup-cmd {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    background: #111827; color: #e5e7eb; border-radius: 8px;
+    padding: 11px 14px; margin-bottom: 14px;
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: .88rem;
+  }
+  .setup-cmd-text { flex: 1; min-width: 150px; }
+  .setup-cmd .btn-mini { background: #1f2937; border-color: #374151; color: #e5e7eb; }
+  .setup-cmd .btn-mini:hover { border-color: var(--accent); color: #fff; }
+  #ipconfig-input {
+    width: 100%; min-height: 160px; resize: vertical;
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px 14px; background: var(--bg); color: var(--text);
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-size: .76rem; line-height: 1.5; outline: none;
+  }
+  #ipconfig-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,.1); }
+  .setup-report:empty { display: none; }
+  .setup-report { margin-top: 20px; }
+  .setup-alert {
+    display: flex; gap: 10px; align-items: flex-start;
+    border: 1px solid; border-radius: 8px; padding: 11px 14px;
+    font-size: .82rem; line-height: 1.5; margin-bottom: 12px;
+  }
+  .setup-alert .ico { flex-shrink: 0; }
+  .setup-alert.info { background: #eff6ff; border-color: #bfdbfe; color: #1e40af; }
+  .setup-alert.ok   { background: #f0fdf4; border-color: #86efac; color: #166534; }
+  .setup-alert.warn { background: #fffbeb; border-color: #fde68a; color: #92400e; }
+  .setup-alert.bad  { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
+  .setup-alert b { color: inherit; }
+  .setup-sub {
+    font-size: .72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .06em; color: var(--dim); margin: 18px 0 8px;
+  }
+  .setup-details {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; margin-bottom: 8px;
+  }
+  .setup-details summary { padding: 9px 13px; cursor: pointer; font-size: .82rem; font-weight: 600; color: var(--dim); }
+  .setup-details summary:hover { color: var(--accent); }
+  .setup-details > div { padding: 0 13px 12px; }
+
   /* ── Event Creator ── */
   .event-creator {
     background: var(--surface); border: 1px solid var(--border);
@@ -613,6 +710,7 @@
   <header>
     <h1>&#128247; Supriya Digitals</h1>
     <div class="right">
+      <a class="header-link" href="#setup">⚙️ Setup</a>
       <a href="https://shanmuk27.github.io/" target="_blank" style="color:var(--accent);text-decoration:none;font-size:.82rem">&#8599; View gallery</a>
       <button id="logout-btn" onclick="logout()">Logout</button>
     </div>
@@ -647,6 +745,67 @@
   </div>
 
   <main>
+
+    <!-- Setup: camera FTP + router IP -->
+    <div class="section" id="setup">
+      <div class="section-title">⚙️ Setup — Camera FTP &amp; Router IP</div>
+
+      <div class="setup-card">
+        <div class="setup-card-head">
+          <span>1 · Camera FTP settings</span>
+          <button class="btn-mini" onclick="copySetupValues()">📋 Copy all values</button>
+        </div>
+        <p class="setup-note">
+          Open the camera's <b>FTP / Network</b> menu and enter these in order.
+          The <b>FTP Server</b> is your <b>laptop's address on the router used by the camera</b>.
+          Paste <b>ipconfig /all</b> below, then select the matching router connection when more
+          than one network is active.
+        </p>
+        <div class="setup-scroll">
+          <table class="setup-table" id="ftp-setup-table"></table>
+        </div>
+        <p class="setup-note" style="margin-top:14px;margin-bottom:0">
+          ⚠️ Do <b>not</b> put the router IP in the <b>FTP Server</b> field. That is the router,
+          not the laptop. FTP Server must always be the laptop's own IP.
+        </p>
+        <div class="setup-sub">Extra cameras (optional)</div>
+        <div class="setup-scroll">
+          <table class="setup-table" id="ftp-extra-table"></table>
+        </div>
+      </div>
+
+      <div class="setup-card">
+        <div class="setup-card-head"><span>2 · Find your router IP</span></div>
+        <p class="setup-note">
+          Press <b>Win + R</b>, type <b>cmd</b>, hit Enter, then run the command below.
+          Next copy the <b>whole output</b> (right-click in the black window →
+          <b>Select All</b> → <b>Copy</b>), paste it into the box and press
+          <b>Analyse</b> to get your full report.
+        </p>
+        <div class="setup-cmd">
+          <span class="setup-cmd-text">ipconfig /all</span>
+          <button class="btn-mini" onclick="copyText('ipconfig /all')">📋 Copy command</button>
+        </div>
+        <textarea id="ipconfig-input" spellcheck="false" placeholder="Paste the full ipconfig output here...
+
+Windows IP Configuration
+
+Wireless LAN adapter Wi-Fi:
+
+   Description . . . . . . . . . . . . : Intel(R) Wi-Fi 6E AX211 160MHz
+   DHCP Enabled. . . . . . . . . . . . : Yes
+   IPv4 Address. . . . . . . . . . . . : 192.168.29.91     (Preferred)
+   Subnet Mask . . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . . : 192.168.29.1
+   DNS Servers . . . . . . . . . . . . : 192.168.29.1"></textarea>
+        <div class="setup-actions" style="margin-top:12px">
+          <button class="btn-mini primary" onclick="analyzeIpconfig()">🔍 Analyse &amp; build report</button>
+          <button class="btn-mini" onclick="clearSetupReport()">✕ Clear</button>
+          <span class="setup-hint">Ctrl + Enter also works</span>
+        </div>
+        <div class="setup-report" id="setup-report"></div>
+      </div>
+    </div>
 
     <!-- Event Manager -->
     <div class="section">
@@ -816,6 +975,9 @@ window.addEventListener('DOMContentLoaded', async () => {
   zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
   zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('drag-over'); addFiles(e.dataTransfer.files); });
   input.addEventListener('change', () => addFiles(input.files));
+
+  const cfgBox = document.getElementById('ipconfig-input');
+  if (cfgBox) cfgBox.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) analyzeIpconfig(); });
 });
 
 function showApp() {
@@ -828,6 +990,7 @@ function showApp() {
   loadViewerCount();
   loadAgentQueue();
   loadCameraFilter();
+  renderFtpTable();
   camPollTimer = setInterval(loadCameraStatus, 5000);
   statsTimer   = setInterval(() => {
     loadStats();
@@ -1135,6 +1298,13 @@ async function loadCameraStatus() {
     const list      = document.getElementById('camera-list');
     const pulse     = document.getElementById('cam-pulse');
     const countEl   = document.getElementById('stat-cam-count');
+
+    const reported  = (cameras.find(c => c.laptop_ip) || {}).laptop_ip || '';
+    if (reported !== liveLaptopIp) {
+      liveLaptopIp  = reported;
+      renderFtpTable();
+      if (setupAnalysis) renderSetupReport(setupAnalysis);
+    }
 
     countEl.textContent = connected;
     countEl.style.color = connected > 0 ? 'var(--connected)' : 'var(--disconn)';
@@ -1462,6 +1632,447 @@ function timeAgo(dtStr) {
 }
 function esc(s) {
   return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── Setup: camera FTP settings + router IP report ────────────────────────────
+// Credentials mirror CONFIG in gallery_agent.py — keep the two in sync.
+const SETUP_CONFIG = {
+  ftp_user:    'sony',
+  ftp_pass:    'camera_pass',
+  ftp_port:    21,
+  ftp_folder:  '/',
+  passive:     'On',
+  extra_users: [ { user: 'sony2', pass: 'camera_pass' }, { user: 'sony3', pass: 'camera_pass' } ],
+};
+
+let liveLaptopIp  = '';    // reported by gallery_agent.py through camera_status
+let setupAnalysis = null;  // last ipconfig parse
+let setupRows     = [];    // rows currently shown in the FTP settings table
+let selectedNetworkIp = ''; // adapter explicitly chosen for the camera router
+
+function copyText(text) {
+  navigator.clipboard.writeText(text)
+    .then(() => toast('📋 Copied to clipboard'))
+    .catch(() => toast('❌ Copy failed — select the text manually'));
+}
+
+// 1 · FTP settings table ──────────────────────────────────────────────────────
+function setupResolvedNet() {
+  if (!setupAnalysis) return null;
+  return setupAnalysis.nets.find(n => n.ip === selectedNetworkIp) || setupAnalysis.recommended;
+}
+
+function renderFtpTable() {
+  const el = document.getElementById('ftp-setup-table');
+  if (!el) return;
+
+  const net   = setupResolvedNet();
+  const gw    = net ? net.gateway : '';
+  const mask  = net ? net.mask    : '';
+  const dns   = net ? (net.dns4[0] || net.dns[0] || gw) : '';
+  // The pasted adapter is authoritative: the agent's Internet route can be a
+  // different network when both Wi-Fi and Ethernet are connected.
+  const ftpIp = net ? net.ip : liveLaptopIp;
+
+  const netTag = !ftpIp              ? ['info', 'Not detected']
+               : (net && net.gateway) ? ['ok', net.label]
+               :                       ['warn', 'Run step 2'];
+
+  setupRows = [
+    { n: 1,  field: 'Wi-Fi network',   value: 'Same Wi-Fi as the laptop',                        note: '' },
+    { n: 2,  field: 'FTP Server',      value: ftpIp || 'detected in step 2',                    note: 'Your laptop, NOT the router', tag: netTag },
+    { n: 3,  field: 'Port',            value: SETUP_CONFIG.ftp_port,                            note: '' },
+    { n: 4,  field: 'User ID',         value: SETUP_CONFIG.ftp_user,                            note: 'From gallery_agent.py' },
+    { n: 5,  field: 'Password',        value: SETUP_CONFIG.ftp_pass,                            note: 'From gallery_agent.py' },
+    { n: 6,  field: 'FTP folder',      value: `${SETUP_CONFIG.ftp_folder}  (or leave blank)`,   note: '' },
+    { n: 7,  field: 'Passive mode',    value: SETUP_CONFIG.passive,                             note: '' },
+    { n: 8,  field: 'IP address mode', value: 'Auto / DHCP',                                    note: 'Use manual only if DHCP fails' },
+    { n: 9,  field: 'Gateway',         value: gw    || 'detected in step 2',                   note: 'Manual entry only', soft: !gw },
+    { n: 10, field: 'Subnet mask',     value: mask  || 'detected in step 2',                   note: 'Manual entry only', soft: !mask },
+    { n: 11, field: 'DNS server',      value: dns   || 'detected in step 2',                   note: 'Manual entry only', soft: !dns },
+  ];
+
+  el.innerHTML = `
+    <thead>
+      <tr><th style="width:30px">#</th><th>Camera menu field</th><th>Value</th><th>Note</th></tr>
+    </thead>
+    <tbody>
+      ${setupRows.map(r => `
+        <tr>
+          <td class="setting">${r.n}</td>
+          <td class="setting">${esc(r.field)}</td>
+          <td class="value ${r.soft ? 'muted' : ''}">${esc(r.value)}${
+            r.tag ? ` <span class="tag ${r.tag[0]}">${esc(r.tag[1])}</span>` : ''}</td>
+          <td class="setting">${esc(r.note)}</td>
+        </tr>`).join('')}
+    </tbody>`;
+
+  const extra = document.getElementById('ftp-extra-table');
+  if (extra) {
+    extra.innerHTML = `
+      <thead>
+        <tr><th>User ID</th><th>Password</th><th>Port</th><th>Use for</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="value">${esc(SETUP_CONFIG.ftp_user)}</td>
+          <td class="value">${esc(SETUP_CONFIG.ftp_pass)}</td>
+          <td class="value">${SETUP_CONFIG.ftp_port}</td>
+          <td class="setting">Camera 1 (main)</td>
+        </tr>
+        ${SETUP_CONFIG.extra_users.map((u, i) => `
+          <tr>
+            <td class="value">${esc(u.user)}</td>
+            <td class="value">${esc(u.pass)}</td>
+            <td class="value">${SETUP_CONFIG.ftp_port}</td>
+            <td class="setting">Camera ${i + 2}</td>
+          </tr>`).join('')}
+      </tbody>`;
+  }
+}
+
+function copySetupValues() {
+  if (!setupRows.length) renderFtpTable();
+  const body = setupRows
+    .map(r => `${String(r.n).padStart(2)}. ${r.field.padEnd(17)} ${r.value}`)
+    .join('\n');
+  copyText(`Supriya Digitals — Camera FTP setup\n${'='.repeat(38)}\n${body}\n`);
+}
+
+// ── ipconfig parsing ─────────────────────────────────────────────────────────
+const IPCONFIG_FIELD_RE = /^\s{2,}(.+?)\s*\.{1,}(?:\s*\.{1,})*\s*:\s*(.*)$/;
+
+function parseIpconfig(raw) {
+  const blocks = [];
+  let cur = null;
+  let lastLabel = null;
+  for (const line of String(raw).split(/\r?\n/)) {
+    // Adapter header: starts at column 0 and ends with a colon.
+    if (line.trim() && !/^\s/.test(line) && /:\s*$/.test(line)) {
+      const header = line.replace(/:\s*$/, '').trim();
+      if (/^windows ip configuration/i.test(header)) { cur = null; lastLabel = null; continue; }
+      cur = { header, fields: Object.create(null) };
+      blocks.push(cur);
+      lastLabel = null;
+      continue;
+    }
+    if (!cur) continue;
+
+    const m = line.match(IPCONFIG_FIELD_RE);
+    if (m) {
+      const label = m[1].trim();
+      const value = m[2].trim();
+      if (!label || !value) { lastLabel = null; continue; }
+      if (!cur.fields[label]) cur.fields[label] = [];
+      cur.fields[label].push(value);
+      lastLabel = label;
+      continue;
+    }
+
+    // Continuation line. `ipconfig /all` stacks extra values of the previous
+    // field on their own indented lines, e.g. an IPv4 gateway listed underneath
+    // an IPv6 one — without this the real router IP is silently dropped.
+    const cont = line.trim();
+    if (lastLabel && cont && /^\s{6,}/.test(line)) cur.fields[lastLabel].push(cont);
+  }
+  return blocks;
+}
+
+function isV4(s) { return /^\d{1,3}(\.\d{1,3}){3}$/.test(String(s).trim()); }
+function cleanIp(v) { return String(v).replace(/\s*\([^)]*\)\s*$/, '').trim(); }
+function ipToInt(ip) {
+  const p = ip.split('.').map(Number);
+  return ((((p[0] << 24) >>> 0) + (p[1] << 16) + (p[2] << 8) + p[3]) >>> 0);
+}
+function maskToPrefix(mask) {
+  if (!isV4(mask)) return '';
+  let bits = 0;
+  for (const o of mask.split('.')) bits += (+o).toString(2).padStart(8, '0').split('1').length - 1;
+  return String(bits);
+}
+function subnetOf(ip, mask) {
+  if (!isV4(ip) || !isV4(mask)) return '';
+  const m = ipToInt(mask);
+  const n = (ipToInt(ip) & m) >>> 0;
+  return [n >>> 24 & 255, n >>> 16 & 255, n >>> 8 & 255, n & 255].join('.');
+}
+
+function friendlyAdapter(header) {
+  let kind = '';
+  let name = header;
+  const m = header.match(/^(.*?)\s+adapter\s+(.+)$/i);
+  if (m) {
+    kind = m[1].trim();
+    name = m[2].trim();
+  } else if (/^Bluetooth Network Connection/i.test(header)) {
+    kind = 'Bluetooth';
+    name = header.replace(/^Bluetooth Network Connection\s*/i, '') || header;
+  } else if (/^Local Area Connection/i.test(header)) {
+    kind = 'Ethernet';
+  }
+  const map = {
+    'Ethernet':   'Ethernet (wired)',
+    'Wireless LAN':'Wi-Fi (wireless)',
+    'Tunnel':     'Tunnel / virtual',
+    'Bluetooth':  'Bluetooth (PAN)',
+  };
+  return { kind, name, type: map[kind] || kind || 'Network adapter' };
+}
+
+const ADAPTER_STATUS = {
+  ok:      ['ok',   'Ready'],
+  warn:    ['warn', 'No gateway'],
+  'no-net':['bad',  'Not on router'],
+  down:    ['bad',  'Disconnected'],
+};
+
+function buildIpconfigReport(raw) {
+  const nets = parseIpconfig(raw).map(b => {
+    const f    = b.fields;
+    const pick = re => { const out = []; for (const k in f) if (re.test(k)) out.push(...f[k]); return out; };
+    const one  = re => (pick(re)[0] || '').trim();
+
+    const ipv4  = pick(/^IPv4 Address$/i).map(cleanIp).filter(isV4);
+    const apipa = pick(/^Autoconfiguration IPv4 Address$/i).map(cleanIp).filter(isV4);
+    const gws   = pick(/^Default Gateway$/i).map(cleanIp).filter(Boolean);
+    const dhcp  = pick(/^DHCP Server$/i).map(cleanIp).filter(isV4);
+    const dns   = pick(/^DNS Servers$/i).map(cleanIp).filter(Boolean);
+    const desc  = one(/^Description$/i);
+    const mac   = one(/^Physical Address$/i);
+    const media = one(/^Media State$/i);
+    const dhcpOn= one(/^DHCP Enabled$/i);
+
+    const ip      = ipv4[0] || apipa[0] || '';
+    // If the routing table lists no IPv4 default gateway, the DHCP server that
+    // handed out the lease is the router in practice — better than reporting none.
+    const gwV4    = gws.find(isV4) || '';
+    const gateway = gwV4 || dhcp[0] || '';
+    const gwSrc   = gwV4 ? 'Default Gateway' : (dhcp[0] ? 'DHCP Server (fallback)' : '');
+    const gw6     = gws.find(g => !isV4(g)) || '';
+    const dns4    = dns.filter(isV4);
+    const ad      = friendlyAdapter(b.header);
+
+    let status = 'ok';
+    let note   = '';
+    if (media && /disconnect/i.test(media)) {
+      status = 'down';   note = media;
+    } else if (!ip) {
+      status = 'down';   note = 'No IPv4 address';
+    } else if (/^169\.254\./.test(ip)) {
+      status = 'no-net'; note = 'APIPA 169.254.x.x — adapter is not on the router';
+    } else if (!gateway) {
+      status = 'warn';   note = 'Has an IP but no default gateway';
+    }
+
+    return {
+      header: b.header, label: ad.name, type: ad.type, desc, mac, media, dhcpOn,
+      ip, gateway, gwSrc, gw6, mask: one(/^Subnet Mask$/i), dns, dns4, dhcp, status, note, fields: f,
+    };
+  });
+
+  const usable   = nets.filter(n => n.status === 'ok' || (n.status === 'warn' && n.ip));
+  let recommended = usable.find(n => n.type === 'Ethernet (wired)' && n.gateway) || null;
+  if (!recommended && liveLaptopIp) recommended = usable.find(n => n.ip === liveLaptopIp) || null;
+  if (!recommended) recommended = usable.find(n => n.ip) || null;
+
+  const routers = [];
+  for (const n of nets) {
+    if (!n.gateway) continue;
+    let r = routers.find(x => x.gateway === n.gateway);
+    if (!r) { r = { gateway: n.gateway, nets: [] }; routers.push(r); }
+    r.nets.push(n);
+  }
+
+  return { nets, routers, recommended };
+}
+
+// ── Report rendering ─────────────────────────────────────────────────────────
+function alertHtml(kind, ico, msg) {
+  return `<div class="setup-alert ${kind}"><span class="ico">${ico}</span><div>${msg}</div></div>`;
+}
+function tagHtml(status) {
+  const [cls, text] = ADAPTER_STATUS[status] || ['info', status];
+  return `<span class="tag ${cls}">${esc(text)}</span>`;
+}
+
+function analyzeIpconfig() {
+  const raw = document.getElementById('ipconfig-input').value;
+  if (!raw.trim()) { toast('⚠️ Paste the ipconfig output first'); return; }
+  setupAnalysis = buildIpconfigReport(raw);
+  if (!setupAnalysis.nets.some(n => n.ip === selectedNetworkIp)) selectedNetworkIp = '';
+  renderFtpTable();
+  renderSetupReport(setupAnalysis);
+  const { nets, routers } = setupAnalysis;
+  toast(nets.length
+    ? `✅ ${nets.length} adapter(s) · ${routers.length} router(s) found`
+    : '❌ No adapters found in that text');
+}
+
+function clearSetupReport() {
+  document.getElementById('ipconfig-input').value = '';
+  document.getElementById('setup-report').innerHTML = '';
+  setupAnalysis = null;
+  selectedNetworkIp = '';
+  renderFtpTable();
+  toast('🗑️ Cleared');
+}
+
+function selectCameraNetwork(ip) {
+  if (!setupAnalysis || !setupAnalysis.nets.some(n => n.ip === ip)) return;
+  selectedNetworkIp = ip;
+  renderFtpTable();
+  renderSetupReport(setupAnalysis);
+  const net = setupResolvedNet();
+  toast(`Camera network set to ${net.label} (${net.ip})`);
+}
+
+function renderSetupReport(an) {
+  const el = document.getElementById('setup-report');
+  if (!el) return;
+  const { nets, routers, recommended: rec } = an;
+  const live = liveLaptopIp;
+
+  if (!nets.length) {
+    el.innerHTML = alertHtml('bad', '❌',
+      'No network adapters found in that text. Make sure you pasted the <b>whole</b> ' +
+      'ipconfig output, including the indented lines that start with spaces.');
+    return;
+  }
+
+  let h = '';
+
+  // ── Headline verdict
+  if (!rec) {
+    h += alertHtml('bad', '❌',
+      'No adapter has both an IPv4 address and a default gateway — the laptop is not on a ' +
+      'router. Check the Wi-Fi connection or Ethernet cable, then run ipconfig again.');
+  } else if (live) {
+    const liveNet = nets.find(n => n.ip === live);
+    if (!liveNet) {
+      h += alertHtml('warn', '⚠️',
+        `gallery_agent.py reports the laptop as <b>${esc(live)}</b>, but that address is not in ` +
+        'this output — the pasted text is probably stale. Re-run <b>ipconfig /all</b> and paste ' +
+        'it again. The FTP Server value in step 1 is still correct.');
+    } else if (rec.ip === live) {
+      h += alertHtml('ok', '✅',
+        `Agent live IP <b>${esc(live)}</b> confirmed on adapter <b>${esc(rec.label)}</b> · ` +
+        `router <b>${esc(rec.gateway)}</b>. This is the adapter the camera must reach.`);
+    } else {
+      h += alertHtml('info', 'ℹ️',
+        'Two networks are active. The agent uses <b>' + esc(live) + ' </b> for Internet access, ' +
+        'but the selected camera router is <b>' + esc(rec.label) + '</b>. Use <b>' +
+        esc(rec.ip) + '</b> as the FTP Server and <b>' + esc(rec.gateway) + '</b> as the gateway.');
+    }
+  } else {
+    h += alertHtml('info', 'ℹ️',
+      'gallery_agent.py is not reporting an IP yet — start it and the FTP Server field in step 1 ' +
+      'fills in automatically. Until then the values below come from your pasted output.');
+  }
+
+  // ── Subnet guidance
+  if (rec && rec.gateway) {
+    const prefix = maskToPrefix(rec.mask);
+    h += alertHtml('info', '🌐',
+      `Connect the camera to the <b>${esc(rec.label)}</b> network (router ` +
+      `<b>${esc(rec.gateway)}</b>). The camera's own IP must sit on the same subnet — ` +
+      `<b>${esc(subnetOf(rec.ip, rec.mask))}</b>${prefix ? ` (${esc(prefix)}-bit)` : ''} — ` +
+      'so the two can talk to each other.');
+  }
+
+  // ── Routers found
+  h += '<div class="setup-sub">Routers found (default gateways)</div>';
+  h += '<div class="setup-scroll"><table class="setup-table"><thead><tr>'
+     + '<th>Router / gateway IP</th><th>Reached via</th><th>Your IP on it</th>'
+     + '<th>Subnet</th><th>DNS</th><th>Status</th></tr></thead><tbody>';
+  if (!routers.length) {
+    h += '<tr><td class="setting" colspan="6">No default gateway found — no router detected.</td></tr>';
+  }
+  routers.forEach(r => {
+    const n0    = r.nets[0];
+    const inUse = rec && r.nets.some(n => n.ip === rec.ip);
+    h += '<tr>'
+       + `<td class="value">${esc(r.gateway)}${inUse ? ' <span class="tag ok">In use</span>' : ''}</td>`
+       + `<td class="mono">${r.nets.map(n => esc(n.label)).join('<br>')}</td>`
+       + `<td class="mono">${r.nets.map(n => esc(n.ip || '—')).join('<br>')}</td>`
+       + `<td class="mono">${esc(n0.mask || '—')}<small>${esc(subnetOf(n0.ip, n0.mask) || '—')}</small></td>`
+       + `<td class="mono">${esc(n0.dns.join(', ') || '—')}</td>`
+       + `<td>${tagHtml(n0.status)}</td>`
+       + '</tr>';
+  });
+  h += '</tbody></table></div>';
+
+  // ── All adapters
+  h += '<div class="setup-sub">All network adapters found</div>';
+  h += '<div class="setup-scroll"><table class="setup-table"><thead><tr>'
+     + '<th>Adapter</th><th>Type</th><th>Status</th><th>Your IPv4</th><th>Subnet mask</th>'
+     + '<th>Router (gateway)</th><th>DNS servers</th><th>DHCP server</th><th>Description</th><th>Camera setup</th>'
+     + '</tr></thead><tbody>';
+  nets.forEach(n => {
+    const sel = rec && n.ip === rec.ip ? ' <span class="tag info">Selected</span>' : '';
+    const canUse = Boolean(n.ip && n.gateway && n.status !== 'down');
+    h += '<tr>'
+       + `<td class="mono">${esc(n.label)}${sel}<small>${esc(n.header)}</small></td>`
+       + `<td class="setting">${esc(n.type)}</td>`
+       + `<td>${tagHtml(n.status)}${n.note ? `<small>${esc(n.note)}</small>` : ''}</td>`
+       + `<td class="mono">${esc(n.ip || '—')}</td>`
+       + `<td class="mono">${esc(n.mask || '—')}</td>`
+       + `<td class="mono">${esc(n.gateway || '—')}${n.gw6 ? `<small>IPv6 ${esc(n.gw6)}</small>` : ''}</td>`
+       + `<td class="mono">${esc(n.dns.join(', ') || '—')}</td>`
+       + `<td class="mono">${esc(n.dhcp.join(', ') || '—')}${n.dhcpOn ? `<small>DHCP ${esc(n.dhcpOn)}</small>` : ''}</td>`
+       + `<td class="setting">${esc(n.desc || '—')}</td>`
+       + `<td>${canUse ? (rec && n.ip === rec.ip
+          ? '<span class="tag ok">Use this network</span>'
+          : `<button class="btn-mini" onclick="selectCameraNetwork('${esc(n.ip)}')">Use for camera</button>`)
+          : '<span class="muted">Unavailable</span>'}</td>`
+       + '</tr>';
+  });
+  h += '</tbody></table></div>';
+
+  // ── What to type in the camera
+  h += '<div class="setup-sub">What to type in the camera</div>';
+  h += '<div class="setup-scroll"><table class="setup-table"><thead><tr>'
+     + '<th>Camera menu field</th><th>Value</th><th>Where it came from</th>'
+     + '</tr></thead><tbody>';
+  const cm = rec ? {
+    'FTP Server':       [rec.ip, `ipconfig → ${rec.label}`],
+    'Port':             [SETUP_CONFIG.ftp_port, 'gallery_agent.py CONFIG'],
+    'User ID':          [SETUP_CONFIG.ftp_user, 'gallery_agent.py CONFIG'],
+    'Password':         [SETUP_CONFIG.ftp_pass, 'gallery_agent.py CONFIG'],
+    'FTP folder':       [`${SETUP_CONFIG.ftp_folder} (or blank)`, 'gallery_agent.py CONFIG'],
+    'Passive mode':     [SETUP_CONFIG.passive, 'gallery_agent.py CONFIG'],
+    'IP address mode':  ['Auto / DHCP', 'recommended'],
+  } : {};
+  if (rec && rec.gateway) {
+    cm['Gateway (manual only)']     = [rec.gateway, rec.gwSrc ? `${rec.gwSrc} on ${rec.label}` : rec.label];
+    cm['Subnet mask (manual only)'] = [rec.mask || '—', `Subnet Mask on ${rec.label}`];
+    cm['DNS server (manual only)']  = [rec.dns4[0] || rec.dns[0] || rec.gateway, `DNS Servers on ${rec.label}`];
+  }
+  Object.keys(cm).forEach(k => {
+    const v = cm[k];
+    h += `<tr><td class="setting">${esc(k)}</td>`
+       + `<td class="value">${esc(v[0])}</td>`
+       + `<td class="setting">${esc(v[1])}</td></tr>`;
+  });
+  h += '</tbody></table></div>';
+  if (rec) {
+    h += alertHtml('bad', '⚠️',
+      `Never enter <b>${esc(rec.gateway)}</b> (the router) in the <b>FTP Server</b> field — that ` +
+      `address is the router, not the laptop. FTP Server must be <b>${esc(rec.ip)}</b>.`);
+  }
+
+  // ── Raw parsed fields
+  h += '<div class="setup-sub">Parsed field details</div>';
+  nets.forEach(n => {
+    const keys = Object.keys(n.fields);
+    if (!keys.length) return;
+    h += `<details class="setup-details"><summary>${esc(n.label)} — ${keys.length} field(s)</summary>`
+       + '<div class="setup-scroll"><table class="setup-table"><tbody>'
+       + keys.map(k => `<tr><td class="setting">${esc(k)}</td>`
+                      + `<td class="mono">${n.fields[k].map(esc).join('<br>')}</td></tr>`).join('')
+       + '</tbody></table></div></details>';
+  });
+
+  el.innerHTML = h;
 }
 let toastTimer;
 function toast(msg) {
